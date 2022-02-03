@@ -25,8 +25,6 @@ public class Blu_LevelManager : MonoBehaviour
     private Player p1;
     private Player p2;
 
-    private int playersAlive = 2;
-
     public void TogglePauseScreen()
     {
         bool isActive = pauseScreen.gameObject.activeInHierarchy;
@@ -37,11 +35,11 @@ public class Blu_LevelManager : MonoBehaviour
     public void PlayerDeath()
     {
         Debug.Log("Player Died");
-        playersAlive--;
-        if (playersAlive <= 0)
+        foreach (Character c in LevelManager.Instance.Players)
         {
-            ShowGameOver();
+            LevelManager.Instance.KillPlayer(c);
         }
+        ShowGameOver();
     }
 
     // Start is called before the first frame update
